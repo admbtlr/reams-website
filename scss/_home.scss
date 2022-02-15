@@ -40,14 +40,19 @@
     line-height: 2.5rem;
     max-width: none;
     color: var(--aubergine);
-
+    text-align: center;
+    margin-bottom: 3rem;
     strong {
       font-weight: 700;
+    }
+
+    @media (min-width: 50em) {
+      padding: 0 100px;
     }
   }
   p:first-of-type {
     margin-top: 3rem;
-    // font-weight: 700;
+    margin-bottom: 0;
   }
 }
 
@@ -66,6 +71,18 @@
     width: 100%;
     height: 100%;
   }
+}
+
+.appstore-button {
+  display: block;
+  width: 160px;
+  max-width: 100%;
+  height: auto;
+  opacity: .8;
+}
+
+.appstore-link {
+  margin: 3rem;
 }
 
 .flash {
@@ -99,6 +116,39 @@
     font-size: 1.33rem;
     line-height: 2rem;
     color: var(--aubergine);
+  }
+
+  ul {
+    list-style-type: none;
+    @media (min-width: 50em) {
+      padding: 0 100px;
+    }
+
+    li {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    h1, p {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+    }
+    h1 {
+      font-family: 'IBM Plex Sans', sans-serif;        
+      margin-bottom: .5rem;
+    }
+    p {
+      font-weight: 400;
+      color: white;
+    }
+    svg {
+      position: absolute;
+      left: -46px;
+      opacity: 0.5;
+
+      @media (min-width: 50em) {
+        left: -56px;
+      }
+    }
   }
 
   #mce-EMAIL {

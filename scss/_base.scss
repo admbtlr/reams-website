@@ -6,7 +6,7 @@
   --blue: hsl(186, 40%, 50%);
   --white: #fff;
   // slight different to match the film <sigh>
-  --rizzleBG: hsl(46, 25%, 80%);
+  --rizzleBG: hsl(40, 32%, 83%);
   --aubergine: #534861;
 }
 * {
@@ -17,6 +17,9 @@
 }
 .logo2 {
   color: var(--red);
+}
+.logo3 {
+  color: var(--aubergine);
 }
 html,
 body {
