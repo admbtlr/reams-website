@@ -1,39 +1,47 @@
+.figures {
+  width: 100vw;
+  height: 40vw;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  background: linear-gradient(rgba(226, 216, 198,0), #e2d8c6) no-repeat border-box, 
+              radial-gradient(30% 50%,#e2d8c6, rgba(226, 216, 198,-1)) no-repeat border-box, 
+              linear-gradient(90deg, #534861, #4da8b3) no-repeat border-box;
+
+  @media (min-width: 50em) {
+    height: 320px;
+    margin-left: calc(0px - 50vw + 25em - 1rem);
+  }
+  
+  &:after {
+    content: "";
+    display: block;
+    height: 90%;
+    width: 100%;
+    top: 1rem;
+    position: relative;
+    background: center / cover url("/img/figures.png") no-repeat, 
+  }
+}
+
 .hero {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  padding-top: 5rem;
+  padding-bottom: 6rem;
 
   .headings {
-    text-align: left;
-
-    @media (min-width: 50em) {
-      & {
-        text-align: center;
-      }
-    }
+    text-align: center;
   }
-
-  h1, h2 {
-    display: inline;
-    font-size: 3rem;
+  h1 {
+    font-size: 4rem;
     line-height: 1.1;
-    padding-right: 1rem;
-
-    @media (min-width: 50em) {
-      & {
-        font-size: 4rem;
-      }
-    }
+    color: white;
+    margin-top: 0;
   }
   h2 {
     font-weight: 400;
-    &:last-of-type {
-      padding-right: 0;
-    }
   }
   p {
     font-size: 1.5rem;
@@ -51,7 +59,7 @@
     }
   }
   p:first-of-type {
-    margin-top: 3rem;
+    margin-top: 0;
     margin-bottom: 0;
   }
 }
@@ -87,8 +95,6 @@
 
 .flash {
   flex-shrink: 0;
-
-  margin-top: 6rem;
   padding-top: 6rem;
   padding-bottom: 1rem;
   background-color: var(--blue);
@@ -105,17 +111,16 @@
     padding-right: calc(50vw - 25em + 1rem);
   }
 
-  h1 {
+  h1, h2 {
     color: white;
-    opacity: 1;
     margin-bottom: 0;
   }
 
   p { 
     margin-top: 0;
-    font-size: 1.33rem;
-    line-height: 2rem;
-    color: var(--aubergine);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: white;
   }
 
   ul {
@@ -137,6 +142,8 @@
       margin-bottom: .5rem;
     }
     p {
+      font-size: 1.33rem;
+      line-height: 2rem;
       font-weight: 400;
       color: white;
     }

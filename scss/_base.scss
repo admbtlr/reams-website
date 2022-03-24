@@ -29,6 +29,8 @@ body {
   font-size: 100%; 
   color: var(--darkgray);
   background-color: var(--rizzleBG);
+}
+body {
   display: flex;
   flex-direction: column;
 }
@@ -46,9 +48,9 @@ h2 {
   // font-family: 'IBM Plex Sans', sans-serif;
   // font-size: 1.5rem;
   font-weight: 300;
-  margin-top: 2rem;
+  // margin-top: 2rem;
   opacity: 0.7;
-  color: var(--blue);
+  // color: var(--blue);
 }
 h1 + h2 {
   margin-top: 0;
@@ -72,9 +74,9 @@ a[href], a[href]:visited {
 main {
   padding: 1rem 1rem 0;
 }
-main :first-child {
-  margin-top: 0;
-}
+// main :first-child {
+//   margin-top: 0;
+// }
 main > p:first-of-type {
   margin-top: 2rem;
 }
@@ -305,7 +307,7 @@ footer {
   margin: 0;
   padding-top: 6rem;
   padding-bottom: 1rem;
-  background-color: var(--blue);
+  background-color: var(--aubergine);
   text-align: right;
 }
 
