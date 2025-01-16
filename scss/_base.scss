@@ -74,7 +74,7 @@ a[href], a[href]:visited {
   color: var(--blue);
 }
 main {
-  padding: 1rem 1rem 0;
+  padding: 1rem 1rem 5rem;
 }
 // main :first-child {
 //   margin-top: 0;
@@ -91,9 +91,6 @@ main > p:first-of-type {
     padding-left: calc(50vw - 25em);
     padding-right: calc(50vw - 25em);
   }
-}
-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 header:after {
   content: "";
@@ -175,6 +172,8 @@ header {
   margin-top: 1rem;
   margin-bottom: 3rem;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
 }
 .header-rosette {
   float: left;
