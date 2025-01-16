@@ -40,7 +40,7 @@ h1, h2, h3, h4 {
   line-height: 1em;
   margin-bottom: 1rem;
   color: var(--aubergine);
-  font-weight: 200;
+  font-weight: 400;
 }
 h1 {
   font-size: 3rem;
@@ -63,6 +63,7 @@ p:last-child {
 p,
 .tmpl-post li,
 img {
+  font-family: 'PT Sans', sans-serif;
   font-weight: 400;
   max-width: 50rem; 
 }
