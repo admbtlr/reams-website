@@ -1,27 +1,5 @@
-.figures {
-  width: 100vw;
-  height: 40vw;
-  margin-top: -1rem;
-  margin-left: -1rem;
-  background: linear-gradient(rgba(226, 216, 198,0), #e2d8c6) no-repeat border-box, 
-              radial-gradient(30% 50%,#e2d8c6, rgba(226, 216, 198,-1)) no-repeat border-box, 
-              linear-gradient(90deg, #534861, #4da8b3) no-repeat border-box;
-
-  @media (min-width: 50em) {
-    height: 320px;
-    margin-left: calc(0px - 50vw + 25em - 1rem);
-  }
-  
-  &:after {
-    content: "";
-    display: block;
-    height: 90%;
-    width: 100%;
-    top: 1rem;
-    position: relative;
-    background: center / cover url("/img/figures.png") no-repeat, 
-  }
-}
+$medium: 600px;
+$large: 100px;
 
 .hero {
   flex: 1 0 auto;
@@ -29,29 +7,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 6rem;
+
+  background-image: url(/img/ream.png);
+  background-image: image-set(
+    url(/img/ream.png) 1x,
+    url(/img/ream@2x.png) 2x
+  );
+  background-repeat: no-repeat;
+  background-position-x: center;
+  padding-top: 250px;
 
   .headings {
     text-align: center;
   }
   h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     line-height: 1.1;
-    color: white;
+    color: var(--aubergine);
     margin-top: 0;
   }
   h2 {
-    font-weight: 400;
+    margin-bottom: .5rem;
   }
   p {
-    font-size: 1.5rem;
-    line-height: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.3rem;
     max-width: none;
     color: var(--aubergine);
     text-align: center;
     margin-bottom: 3rem;
     strong {
       font-weight: 700;
+    }
+    em {
+      font-style: normal;
+      color: var(--red);
     }
 
     @media (min-width: 50em) {
@@ -61,6 +51,243 @@
   p:first-of-type {
     margin-top: 0;
     margin-bottom: 0;
+  }
+}
+
+.download-open-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3rem;
+
+  a {
+    opacity: 0.8;
+  }
+}
+
+.app-link-box {
+  display: none;
+
+  @media screen and (min-width: $medium) {
+    display: block;
+    height: 47px;
+    background-color: black;
+    background-image: url('/img/mini-ream.svg');
+    background-repeat: no-repeat;
+    background-position: 15px;
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 15px 5px 50px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    margin-left: 3rem;
+  }
+}
+
+section {
+  width: 100vw;
+  display: flex;
+  position: relative;
+  left: -1rem;
+
+  @media screen and (min-width: $medium) {
+    left: calc(-50vw + 25em - 1rem);
+  }
+}
+
+section.joyful {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: $medium) {
+    height: 1200px;
+    flex-direction: row;    
+  }
+
+  .covers {
+    height: 570px;
+    background-image: url('/img/covers-small.png');
+    background-image: image-set(
+      url('/img/covers-small') 1x,
+      url('img/covers-small@2x.png') 2x
+    );
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @media screen and (min-width: $medium) {
+      height: 1150px;
+      background-position: right;
+      flex: 1;
+      z-index: 10;
+      background-image: url('/img/covers.png');
+      background-image: image-set(
+        url('/img/covers') 1x,
+        url('img/covers@2x.png') 2x
+      );
+      }
+  }
+
+  .description {
+    flex: 0;
+    min-width: 12em;
+    // background-color: red;
+    text-align: center;
+    color: var(--brown);
+    margin: 0 1rem 3rem;
+
+    h1, p {
+      color: var(--brown);
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: $medium) {
+      margin: 100px 50px;
+    }
+
+  }
+
+  .typography {
+    background-image: url('/img/typography-small.png');
+    background-image: image-set(
+      url('/img/typography-small') 1x,
+      url('img/typography-small@2x.png') 2x
+    );
+    height: 560px;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 10;
+
+    @media screen and (min-width: $medium) {
+      flex: 1;
+      height: 1050px;
+      background-image: url('/img/typography.png');
+      background-image: image-set(
+        url('/img/typography') 1x,
+        url('img/typography@2x.png') 2x
+      );
+      background-position: left;
+      // position: relative;
+      margin-left: -100px;
+    }
+  }
+}
+
+section.features {
+  padding: 50px 0;
+  background-color: var(--brown);
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -120px;
+  padding-top: 100px;
+
+  @media screen and (min-width: $medium) {
+    margin-top: -300px;
+  }
+
+  h1, h3 {
+    color: white;
+    text-align: center;
+  }
+
+  h1 {
+    width: 5em;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (min-width: $medium) {
+      width: 1200px;
+    }
+    
+    flex-wrap: wrap;
+    li {
+      flex: 0;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-direction: column;
+      justify-content: space-between;
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.2);
+      text-align: center;
+      flex-basis: calc(100vw - 4rem);
+      height: calc(100vw - 4rem);
+      width: calc(100vw - 4rem);
+      margin: 2rem; 
+      padding: 1rem .5rem 1.5rem;
+      border-radius: 2rem;
+
+      @media screen and (min-width: $medium) {
+        flex-basis: 300px;
+        height: 300px;
+        padding: 40px 30px;
+        margin: 40px;
+        border-radius: 20px;
+      }
+
+      h1, img, p {
+        flex: 0;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        line-height: 1em;
+        margin: 0;
+        width: 100%;
+      }
+
+      img {
+        width: 64px;
+        height: 64px;
+        margin: 0px auto;
+      }
+
+      p {
+        line-height: 1.2em; 
+      }
+    }
+  }
+}
+
+section.open {
+  flex-direction: column;
+  background-color: var(--blue);
+  color: white;
+  padding: 1rem;
+  align-items: center;
+
+  @media screen and (min-width: $medium) {
+    padding: 50px;
+  }
+
+  h1, a, a:visited {
+    color: white;
+  }
+
+  h1, p {
+    text-align: left;
+    @media screen and (min-width: $medium) {
+      text-align: center;
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (min-width: $medium) {
+    p:first-of-type {
+      text-align: left;
+      align-self: flex-start;
+    }
+
+    p:last-of-type {
+      text-align: right;
+      align-self: flex-end;
+    }
   }
 }
 
@@ -84,13 +311,8 @@
 .appstore-button {
   display: block;
   width: 160px;
-  max-width: 100%;
+  // max-width: 100%;
   height: auto;
-  opacity: .8;
-}
-
-.appstore-link {
-  margin: 3rem;
 }
 
 .flash {

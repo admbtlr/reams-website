@@ -1,7 +1,7 @@
 {
   "title": "Reams",
-  "url": "https://myurl.com/",
-  "description": "Anything related to Reams, an app and platform for RSS, 2020 style",
+  "url": "https://reams.app/",
+  "description": "Reams is a serious, joyful and open app for people who love to read",
   "feed": {
     "subtitle": "I am writing about my experiences as a naval navel-gazer.",
     "filename": "feed.xml",
@@ -9,7 +9,7 @@
     "id": "https://myurl.com/"
   },
   "author": {
-    "name": "Your Name Here",
-    "email": "youremailaddress@example.com"
+    "name": "Adam Butler",
+    "email": "adam@reams.app"
   }
 }

@@ -8,7 +8,7 @@
     <!--link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}"-->
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,700;1,200;1,700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans,wght@400;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,11 +40,16 @@
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
     </main>
-    <footer>Made in Berlin • &copy; 2022 Adam Butler</footer>
-
-    <!--footer>
-      <p><em>This is an <a href="https://www.11ty.io/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-    </footer-->
+    <footer>
+      <p>Made in Berlin • &copy; 2025 Adam Butler</p>
+      <p><a href="" id="contact"></a></p>
+      <script language="javascript">
+var encEmail = "YWRhbUByZWFtcy5hcHA="
+const form = document.getElementById("contact")
+form.setAttribute("href", "mailto:".concat(atob(encEmail)))
+form.innerText = atob(encEmail)
+      </script>
+    </footer>
 
     <!-- Current page: {{ page.url | url }} -->
   </body>

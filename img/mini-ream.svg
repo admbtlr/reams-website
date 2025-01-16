@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="36px" viewBox="0 0 27 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 3</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Large" transform="translate(-852, -546)">
+            <g id="Group-3" transform="translate(852, 546)">
+                <rect id="Rectangle" stroke="#FFFFFF" x="0.5" y="0.5" width="26" height="35" rx="2"></rect>
+                <line x1="5.5" y1="6.5" x2="21.5" y2="6.5" id="Line" stroke="#FFFEFE" stroke-width="3" stroke-linecap="round"></line>
+                <line x1="5.5" y1="12.5" x2="15.5" y2="12.5" id="Line-Copy" stroke="#FFFEFE" stroke-width="3" stroke-linecap="round"></line>
+                <rect id="Rectangle" stroke="#FFFFFF" fill="#FFF7F7" opacity="0.701384045" x="4.5" y="18.5" width="4" height="6" rx="1"></rect>
+                <line x1="10.4333333" y1="18.5" x2="22.5666667" y2="18.5" id="Line-2" stroke="#FFFFFF" opacity="0.701384045" stroke-linecap="square"></line>
+                <line x1="10.4333333" y1="21.5" x2="22.5666667" y2="21.5" id="Line-2-Copy" stroke="#FFFFFF" opacity="0.701384045" stroke-linecap="square"></line>
+                <line x1="10.4333333" y1="24.5" x2="22.5666667" y2="24.5" id="Line-2-Copy-2" stroke="#FFFFFF" opacity="0.701384045" stroke-linecap="square"></line>
+                <line x1="4.63333333" y1="27.5" x2="22.3666667" y2="27.5" id="Line-2-Copy-3" stroke="#FFFFFF" opacity="0.701384045" stroke-linecap="square"></line>
+                <line x1="4.63333333" y1="30.5" x2="22.3666667" y2="30.5" id="Line-2-Copy-4" stroke="#FFFFFF" opacity="0.701384045" stroke-linecap="square"></line>
+            </g>
+        </g>
+    </g>
+</svg>
