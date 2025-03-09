@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Reams Account</title>
+    <!-- Using a different CDN source that might be more reliable -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "PT Sans",sans-serif;
+            line-height: 1.6;
+            color: #534861;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e8e4d9;
+        }
+        h1, h2 {
+            color: #534861;
+        }
+        .container {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input, button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #c53030;
+        }
+        button:disabled {
+            background-color: #cbd5e0;
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .error {
+            background-color: #fed7d7;
+            color: #9b2c2c;
+        }
+        .success {
+            background-color: #c6f6d5;
+            color: #276749;
+        }
+        .info {
+            background-color: #e2e8f0;
+            color: #2d3748;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hidden {
+            display: none;
+        }
+        .debug-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Your Reams Account</h1>
+        
+        <div id="messageContainer" class="hidden message"></div>
+        
+        <!-- Login Form -->
+        <div id="loginForm">
+            <p>Please enter your email address to receive a magic link. After clicking the link in your email, you'll be able to delete your account.</p>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required placeholder="youremail@example.com">
+            </div>
+            <button id="sendMagicLink">
+                <span id="loginSpinner" class="spinner hidden"></span>
+                <span id="loginButtonText">Send Magic Link</span>
+            </button>
+        </div>
+        
+        <!-- Delete Account Form -->
+        <div id="deleteForm" class="hidden">
+            <p>You are logged in. Click the button below to permanently delete your account.</p>
+            <p><strong>Warning:</strong> This action cannot be undone. All your data will be permanently deleted.</p>
+            <button id="deleteAccount">
+                <span id="deleteSpinner" class="spinner hidden"></span>
+                <span id="deleteButtonText">Delete My Account</span>
+            </button>
+        </div>
+        
+        <!-- Success Message -->
+        <div id="successMessage" class="hidden">
+            <h2>Account Deleted</h2>
+            <p>Your account has been deleted. Than you for using Reams!</p>
+        </div>
+
+        <!-- Debug Information -->
+        <div id="debugInfo" class="debug-info"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // For debugging - show extended information
+            const isLocalhost = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1';
+            const debugInfo = document.getElementById('debugInfo');
+            if (isLocalhost) {
+                debugInfo.style.display = 'block';
+            }
+
+            function logDebug(message, data) {
+                if (isLocalhost) {
+                    console.log(message, data);
+                    debugInfo.textContent += `\n${message}: ${JSON.stringify(data, null, 2)}`;
+                }
+            }
+
+            // Test if Supabase is available
+            if (!window.supabase) {
+                const errorMsg = 'Supabase library not loaded correctly. Please refresh the page or try again later.';
+                showMessage(errorMsg, 'error');
+                logDebug('Supabase load error', { error: 'Library not found in window object' });
+                return;
+            }
+            
+            logDebug('Supabase library loaded', { version: '2.x' });
+
+            // Initialize Supabase client
+            const supabaseUrl = 'https://cowmvtrdudwlukpczius.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvd212dHJkdWR3bHVrcGN6aXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODgyNDA2NDcsImV4cCI6MjAwMzgxNjY0N30.OibHkzmEEWh2wqdrfsqh2tboePWfQlk8vG8SMvdcev0';
+            let supabase;
+            
+            try {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                logDebug('Supabase client initialized', { url: supabaseUrl });
+            } catch (error) {
+                showMessage('Failed to initialize Supabase client. Please try again later.', 'error');
+                logDebug('Supabase initialization error', error);
+                return;
+            }
+
+            // DOM elements
+            const loginForm = document.getElementById('loginForm');
+            const deleteForm = document.getElementById('deleteForm');
+            const successMessage = document.getElementById('successMessage');
+            const messageContainer = document.getElementById('messageContainer');
+            const emailInput = document.getElementById('email');
+            const sendMagicLinkButton = document.getElementById('sendMagicLink');
+            const deleteAccountButton = document.getElementById('deleteAccount');
+            const loginSpinner = document.getElementById('loginSpinner');
+            const loginButtonText = document.getElementById('loginButtonText');
+            const deleteSpinner = document.getElementById('deleteSpinner');
+            const deleteButtonText = document.getElementById('deleteButtonText');
+
+            // Helper functions
+            function showMessage(message, type) {
+                messageContainer.textContent = message;
+                messageContainer.className = `message ${type}`;
+                messageContainer.classList.remove('hidden');
+            }
+
+            function hideMessage() {
+                messageContainer.classList.add('hidden');
+            }
+
+            function showLoading(button, spinner, buttonText, loadingText) {
+                button.disabled = true;
+                spinner.classList.remove('hidden');
+                buttonText.textContent = loadingText;
+            }
+
+            function hideLoading(button, spinner, buttonText, originalText) {
+                button.disabled = false;
+                spinner.classList.add('hidden');
+                buttonText.textContent = originalText;
+            }
+
+            // Check if user is already authenticated
+            async function checkSession() {
+                try {
+                    const { data, error } = await supabase.auth.getSession();
+                    
+                    if (error) {
+                        throw error;
+                    }
+                    
+                    logDebug('Session check result', data);
+                    
+                    if (data.session) {
+                        // User is authenticated, show delete form
+                        loginForm.classList.add('hidden');
+                        deleteForm.classList.remove('hidden');
+                    } else {
+                        // User is not authenticated, show login form
+                        loginForm.classList.remove('hidden');
+                        deleteForm.classList.add('hidden');
+                    }
+                } catch (error) {
+                    showMessage('Error checking authentication status. Please try again.', 'error');
+                    logDebug('Session check error', error);
+                }
+            }
+
+            // Handle magic link submission
+            async function handleMagicLink(e) {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                if (!email) {
+                    showMessage('Please enter your email address.', 'error');
+                    return;
+                }
+                
+                hideMessage();
+                showLoading(sendMagicLinkButton, loginSpinner, loginButtonText, 'Sending...');
+                
+                // For local testing, use localhost redirect
+                const redirectTo = isLocalhost 
+                    ? 'http://localhost:8080/account/delete/'
+                    : 'https://reams.app/account/delete/';
+                
+                logDebug('Magic link request', { 
+                    email: email,
+                    redirectTo: redirectTo
+                });
+                
+                try {
+                    const { data, error } = await supabase.auth.signInWithOtp({
+                        email,
+                        options: {
+                            emailRedirectTo: redirectTo
+                        }
+                    });
+                    
+                    if (error) {
+                        throw error;
+                    }
+                    
+                    logDebug('Magic link response', data);
+                    
+                    showMessage('Magic link sent! Please check your email.', 'success');
+                    emailInput.value = '';
+                } catch (error) {
+                    const errorMessage = error.message || 'Failed to send magic link.';
+                    showMessage(`Error: ${errorMessage}`, 'error');
+                    logDebug('Magic link error', error);
+
+                    // Display more helpful message for common errors
+                    if (errorMessage.includes('NetworkError')) {
+                        showMessage('Network connection error. Please check your internet connection and ensure your Supabase URL is correct.', 'error');
+                    }
+                } finally {
+                    hideLoading(sendMagicLinkButton, loginSpinner, loginButtonText, 'Send Magic Link');
+                }
+            }
+
+            // Handle account deletion using invoke
+            async function handleDeleteAccount(e) {
+                e.preventDefault();
+                
+                if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                    return;
+                }
+                
+                hideMessage();
+                showLoading(deleteAccountButton, deleteSpinner, deleteButtonText, 'Deleting...');
+                
+                try {
+                    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+                    
+                    if (sessionError) {
+                        throw sessionError;
+                    }
+                    
+                    if (!sessionData.session) {
+                        throw new Error('You must be logged in to delete your account');
+                    }
+                    
+                    logDebug('Invoking Edge Function', { 
+                        functionName: 'user-self-delete',
+                        isAuthenticated: true
+                    });
+                    
+                    // Call the Edge Function using the built-in method
+                    const { data, error } = await supabase.functions.invoke('user-self-delete', {
+                        method: 'POST',
+                        body: {} // Empty body or can include additional parameters if needed
+                    });
+                    
+                    if (error) {
+                        throw error;
+                    }
+                    
+                    logDebug('Function response', data);
+                    
+                    // Show success message
+                    loginForm.classList.add('hidden');
+                    deleteForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    
+                    // Sign out the user
+                    await supabase.auth.signOut();
+                } catch (error) {
+                    const errorMessage = error.message || 'Failed to delete account.';
+                    logDebug('Delete account error', error);
+                    
+                    if (errorMessage.includes('NetworkError') || error.name === 'TypeError') {
+                        showMessage('Network error when trying to delete your account. Please try again later.', 'error');
+                        
+                        if (isLocalhost) {
+                            logDebug('Edge Function troubleshooting', {
+                                checkFunctionName: 'Verify that your Edge Function is named "user-self-delete"',
+                                localSetup: 'For local testing, run "supabase functions serve user-self-delete"',
+                                supabaseLogin: 'Make sure you\'re logged in with "supabase login"',
+                                linkCheck: 'Verify project is linked with "supabase link"'
+                            });
+                        }
+                    } else {
+                        showMessage(`Error: ${errorMessage}`, 'error');
+                    }
+                } finally {
+                    hideLoading(deleteAccountButton, deleteSpinner, deleteButtonText, 'Delete My Account');
+                }
+            }
+
+            // Event listeners
+            sendMagicLinkButton.addEventListener('click', handleMagicLink);
+            deleteAccountButton.addEventListener('click', handleDeleteAccount);
+
+            // Check for hash fragment indicating magic link auth completion
+            window.addEventListener('hashchange', checkSession);
+            
+            // Initialize page
+            checkSession();
+            
+            // Handle magic link return
+            if (window.location.hash.includes('access_token')) {
+                showMessage('Authentication successful. You can now delete your account.', 'success');
+                checkSession();
+            }
+        });
+    </script>
+</body>
+</html>

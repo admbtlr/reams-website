@@ -55,4 +55,9 @@
     <loc>https://reams.app/privacy/</loc>
     <lastmod>2025-01-16</lastmod>
   </url>
+  
+  <url>
+    <loc>https://reams.app/account/delete/</loc>
+    <lastmod>2025-03-09</lastmod>
+  </url>
 </urlset>
