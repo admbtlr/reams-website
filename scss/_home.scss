@@ -1,5 +1,5 @@
 $medium: 600px;
-$large: 100px;
+$large: 1000px;
 
 body {
   background-color: var(--rizzleBG);
@@ -32,11 +32,16 @@ body {
   .headings {
     text-align: center;
     max-width: 50rem;
+    margin: 0 2rem;
     opacity: 0;
     animation: fadeIn cubic-bezier(0.33, 1, 0.68, 1) 1.5s 1s forwards;
   }
   h1 {
-    font-size: 5rem;
+    font-size: 3rem;
+    @media (min-width: $medium) {
+      font-size: 5rem;
+    }
+
     line-height: 1.1;
     color: var(--aubergine);
     margin-top: 0;
@@ -109,7 +114,7 @@ section {
   position: relative;
   left: -1rem;
 
-  @media screen and (min-width: $medium) {
+  @media screen and (min-width: 800px) {
     left: calc(-50vw + 25em - 1rem);
   }
 }
@@ -198,10 +203,9 @@ section.joyful {
     background-repeat: no-repeat;
     z-index: 10;
 
-    position: relative;
-    top: -5rem;
-
     @media screen and (min-width: $medium) {
+      position: relative;
+      top: -5rem;
       flex: 1;
       height: 1050px;
       background-image: url('/img/typography.png');
@@ -363,7 +367,8 @@ section.open {
   color: white;
   padding: 1rem;
   align-items: center;
-  margin-bottom: -5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 
   @media screen and (min-width: $medium) {
     padding: 50px;
