@@ -17,6 +17,29 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ddd9cb">
     <meta name="msapplication-TileColor" content="#ddd9cb">
     <meta name="theme-color" content="#ddd9cb">
+    <script language="javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    root: null, // use the viewport as root
+    rootMargin: '0px',
+    threshold: 0.2 // trigger when 20% of the element is visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // stop observing once animated
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with the animate-on-scroll class
+  document.querySelectorAll('.animate-on-scroll').forEach(element => {
+    observer.observe(element);
+  });
+});
+    </script>
 </head>
   <style>
     {% include "css/styles.css" ignore missing %}
@@ -41,7 +64,6 @@
       {{ content | safe }}
     </main>
     <footer>
-      <p>Made in Berlin • &copy; 2025 Adam Butler</p>
       <p><a href="" id="contact"></a></p>
       <script language="javascript">
 var encEmail = "YWRhbUByZWFtcy5hcHA="
@@ -49,6 +71,7 @@ const form = document.getElementById("contact")
 form.setAttribute("href", "mailto:".concat(atob(encEmail)))
 form.innerText = atob(encEmail)
       </script>
+      <p>Made in Berlin • &copy; 2025 Adam Butler</p>
     </footer>
 
     <!-- Current page: {{ page.url | url }} -->

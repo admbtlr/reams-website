@@ -6,9 +6,10 @@
   --blue: hsl(186, 40%, 50%);
   --white: #fff;
   // slight different to match the film <sigh>
-  --rizzleBG: hsl(46, 25%, 88%);
+  --rizzleBG: hsl(46, 25%, 80%);
+  --rizzleBG-lighter: hsl(46, 25%, 90%);
   --aubergine: #534861;
-  --brown: #A47965;
+  --brown: #896453;
 }
 * {
   box-sizing: border-box;
@@ -27,7 +28,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'PT Sans', sans-serif;
-  font-size: 100%; 
+  font-size: 100%;
   color: var(--darkgray);
   background-color: var(--rizzleBG);
 }
@@ -65,7 +66,7 @@ p,
 img {
   font-family: 'PT Sans', sans-serif;
   font-weight: 400;
-  max-width: 50rem; 
+  max-width: 50rem;
 }
 p,
 .tmpl-post li {
@@ -139,7 +140,7 @@ pre {
 
 blockquote {
   margin: 1rem 0;
-  padding: 2rem;  
+  padding: 2rem;
   background-color: rgba(255, 255, 255, 0.3);
   font-style: italic;
 }
@@ -305,11 +306,11 @@ a[href].direct-link:focus:visited,
 }
 
 footer {
-  color: white;
+  color: var(--aubergine);
   margin: 0;
   padding-top: 6rem;
   padding-bottom: 2rem;
-  background-color: var(--aubergine);
+  background-color: var(--rizzleBG);
   text-align: center;
 }
 
@@ -326,4 +327,18 @@ main {
 }
 .footer {
   flex-shrink: 0;
+}
+
+button, .button {
+    background-color: white;
+    color: black;
+    padding: 1rem 3rem;
+    line-height: 1rem;
+    text-decoration: none;
+    border-radius: 2rem;
+    border: 1px solid black;
+
+    &:visited, &:active {
+      color: black !important;
+    }
 }

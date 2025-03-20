@@ -4,71 +4,79 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
-<div class="hero">
+<section class="hero">
   <div class="headings">
-    <h1>Reams</h1>
-    <h2>A serious, joyful &amp; open app for readers</h2>
+    <h1>Reams <span class="lighter">is a serious, joyful &amp; open app for readers</span></h1>
     <p>Newsletters, RSS, save for later, readability, highlights, tags—everything you need to fall in love with reading again</p>
   </div>
   <div class="download-open-links">
-    <a href="https://apps.apple.com/us/app/reams/id1229027127" class="appstore-link"><img src="/img/button-appstore.png" alt="Reams" class="appstore-button"></a>
-    <a href="http://web.reams.app" class="app-link-box">Open in browser</a>
+    <a href="https://apps.apple.com/us/app/reams/id1229027127" class="appstore-link"><img src="/img/button-appstore.png" alt="Download Reams from the iOS app store" class="appstore-button"></a>
+    <a href="http://web.reams.app" class="app-link-box" alt="Open Reams in your browser">Open in browser</a>
   </div>
   <!-- <p><strong>Reams is a new approach to reading on the web, conceived from the ground up to help you find and read more about things you&nbsp;love. </strong></p>
   <p>With AI-driven layouts, delightful interactions and powerful features, Reams focuses on the immersive pleasures of text and image.</p>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/QjnidKaTqWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-</div>
-<section class="joyful">
-  <div class="covers">
-    <p>.</p>
-  </div>
-  <div class="description">
-    <h1>Joyful Layouts</h1>
-    <p>Reams uses infernally complex logic, a sprinkling of AI and a whole lot of attention to typographic detail to turn your reading into a stunning, immersive experience.</p>
-  </div>
-  <div class="typography">
-    <p>.</p>
+</section>
+<section class="video">
+  <video width="348" height="720" autoplay loop muted playsinline alt="A video showing the Reams app in action">
+    <source src="/img/720-smaller.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div>
+    <h1>Your favourite content has never looked this good</h1>
+    <p>Flipping through the newsletters and RSS stories in your feed is like reading a personalised magazine.</p>
+    <p>And because every article looks different, you’re much more likely to remember what you’ve read.</p>
   </div>
 </section>
 <section class="features">
   <h1>Serious Features</h1>
   <ul>
-    <li>
+    <li class="animate-on-scroll" style="left: 410px">
+      <img src="/img/feed.svg" alt="RSS feed icon">
       <h1>Curate your feed</h1>
-      <img src="/img/feed.svg">
       <p>Find and add RSS feeds; subscribe to newsletters with your own reams.app email address</p>
     </li>
-    <li>
-      <h1>Keep everything organised with tags</h1>
-      <img src="/img/tag.svg">
-      <p>Tag to feeds, newsletters or individual articles. Or don’t!</p>
+    <li class="animate-on-scroll">
+      <img src="/img/tag.svg" alt="Tag icon">
+      <h1>Organise with tags</h1>
+      <p>Add tags to feeds, newsletters or individual articles. Or don’t!</p>
     </li>
-    <li>
+    <li class="animate-on-scroll" style="left: -410px">
+      <img src="/img/highlights.svg" alt="Highlights icon">
       <h1>Highlights &amp; notes</h1>
-      <img src="/img/highlights.svg">
       <p>Save those salient sentences and apercus</p>
     </li>
-    <li>
-      <h1>Save with browser extensions</h1>
-      <img src="/img/saved.svg">
-      <p>Add any article to your library—available for mobile &amp; desktop</p>
+    <li class="animate-on-scroll" style="left: 410px">
+      <img src="/img/saved.svg" alt="Save icon">
+      <h1>Save any article</h1>
+      <p>Add any article to your library with mobile &amp; desktop browser extensions</p>
     </li>
-    <li>
+    <li class="animate-on-scroll">
+      <img src="/img/search.svg" alt="Search icon">
       <h1>Search</h1>
-      <img src="/img/search.svg">
       <p>Find the needles in your haystack—even if you’re offline</p>
     </li>
-    <li>
+    <li class="animate-on-scroll" style="left: -410px">
+      <img src="/img/nudges.svg" alt="Nudges icon">
       <h1>Nudges</h1>
-      <img src="/img/nudges.svg">
-      <p>With occasional reminders to pay authors (if they offer subscriptions), you’ll never forget the value of what you read</p>
+      <p>With occasional reminders to pay authors, you’ll never forget the value of what you read</p>
     </li>
   </ul>
-  <h3>&amp; so much more besides</h3>
+</section>
+<section class="joyful">
+  <div class="covers animate-on-scroll">
+    <p>.</p>
+  </div>
+  <div class="description animate-on-scroll">
+    <h1>Joyful Layouts</h1>
+    <p>Reams uses infernally complex logic, a sprinkling of AI and a whole lot of attention to typographic detail to turn your reading into a stunning, immersive experience.</p>
+  </div>
+  <div class="typography animate-on-scroll">
+    <p>.</p>
+  </div>
 </section>
 <section class="open">
   <h1>Open Forever</h1>
-  <p>Reams is <a href="https://www.github.com/admbtlr/reams">open source</a>. That doesn’t mean that I expect you to go and start hacking around with the code (although please feel free to do so—I love pull requests!). Instead it’s a pledge to general openness. There shouldn’t be anything obscure about Reams, or about how it works.</p>
-  <p>Wherever possible I try to use open standards, and to avoid proprietary technology. I also make an effort to use technologies that I want to support—for example, the newsletter functionality is powered by the wonderful <a href="https://www.fastmail.com">Fastmail</a>, rather than Gmail, which is what most similar tools rely on.</p>
-  <p>Note that this doesn’t mean that it’s free as in beer: after one month of use, if you don’t cough up for the very cheap subscription, there are some limitations to the number of articles you can save and the number of highlights you can create. This is to try and ensure that I can afford to continue working on Reams, adding new features, and generally keeping it running.</p>
+  <p>Reams is for open minds. And it’s open source.</p>
+  <a href="https://github.com/admbtlr/reams" class="button github" target="_blank">Start contributing</a>
 </section>

@@ -1,6 +1,15 @@
 $medium: 600px;
 $large: 100px;
 
+body {
+  background-color: var(--rizzleBG);
+  background: radial-gradient(circle at 50% 100px, rgba(255,255,255,0.5) 0%, rgba(255, 255, 255, 0) 20%);
+}
+
+.lighter {
+  opacity: 0.7;
+}
+
 .hero {
   flex: 1 0 auto;
   display: flex;
@@ -16,22 +25,29 @@ $large: 100px;
   background-repeat: no-repeat;
   background-position-x: center;
   padding-top: 250px;
+  padding-bottom: 5rem;
+
+  animation: slideInTop 1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 
   .headings {
     text-align: center;
+    max-width: 50rem;
+    opacity: 0;
+    animation: fadeIn cubic-bezier(0.33, 1, 0.68, 1) 1.5s 1s forwards;
   }
   h1 {
     font-size: 5rem;
     line-height: 1.1;
     color: var(--aubergine);
     margin-top: 0;
+    margin-bottom: 5rem;
   }
   h2 {
     margin-bottom: .5rem;
   }
   p {
-    font-size: 1rem;
-    line-height: 1.3rem;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
     max-width: none;
     color: var(--aubergine);
     text-align: center;
@@ -60,6 +76,8 @@ $large: 100px;
   justify-content: flex-start;
   align-items: center;
   padding: 3rem;
+  opacity: 0;
+  animation: fadeIn cubic-bezier(0.33, 1, 0.68, 1) 2s 1.5s forwards;
 
   a {
     opacity: 0.8;
@@ -99,10 +117,11 @@ section {
 section.joyful {
   display: flex;
   flex-direction: column;
+  background-color: var(--brown);
 
   @media screen and (min-width: $medium) {
-    height: 1200px;
-    flex-direction: row;    
+    flex-direction: row;
+    margin-bottom: -15rem;
   }
 
   .covers {
@@ -115,6 +134,9 @@ section.joyful {
     background-repeat: no-repeat;
     background-position: center;
 
+    position: relative;
+    top: -5rem;
+
     @media screen and (min-width: $medium) {
       height: 1150px;
       background-position: right;
@@ -125,7 +147,15 @@ section.joyful {
         url('/img/covers') 1x,
         url('img/covers@2x.png') 2x
       );
+      opacity: 0;
+      transform: translateX(-20%); /* Start position off-screen to the left */
+    }
+
+    &.visible {
+      @media screen and (min-width: $medium) {
+        animation: slideInLeft 1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
       }
+    }
   }
 
   .description {
@@ -136,9 +166,19 @@ section.joyful {
     color: var(--brown);
     margin: 0 1rem 3rem;
 
+    opacity: 0;
+
+    &.visible {
+      animation: fadeIn cubic-bezier(0.33, 1, 0.68, 1) 2s forwards;
+    }
+
     h1, p {
-      color: var(--brown);
       margin-top: 0;
+      color: white;
+    }
+
+    p {
+      /* color: #532; */
     }
 
     @media screen and (min-width: $medium) {
@@ -158,6 +198,9 @@ section.joyful {
     background-repeat: no-repeat;
     z-index: 10;
 
+    position: relative;
+    top: -5rem;
+
     @media screen and (min-width: $medium) {
       flex: 1;
       height: 1050px;
@@ -169,25 +212,33 @@ section.joyful {
       background-position: left;
       // position: relative;
       margin-left: -100px;
+      transform: translateX(20%); /* Start position off-screen to the left */
+      opacity: 0;
+    }
+
+    &.visible {
+      @media screen and (min-width: $medium) {
+        animation: slideInRight 1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+      }
     }
   }
 }
 
 section.features {
   padding: 50px 0;
-  background-color: var(--brown);
+  /* background-color: var(--brown); */
   color: white;
   flex-direction: column;
   align-items: center;
-  margin-top: -120px;
-  padding-top: 100px;
+  padding-top: 5rem;
+  padding-bottom: 200px;
 
   @media screen and (min-width: $medium) {
-    margin-top: -300px;
+    /* margin-top: -300px; */
   }
 
   h1, h3 {
-    color: white;
+    /* color: white; */
     text-align: center;
   }
 
@@ -199,14 +250,15 @@ section.features {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
     padding: 0;
 
     @media screen and (min-width: $medium) {
+      justify-content: space-between;
       width: 1200px;
     }
-    
+
     flex-wrap: wrap;
     li {
       flex: 0;
@@ -215,44 +267,93 @@ section.features {
       flex-direction: column;
       justify-content: space-between;
       display: flex;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: var(--rizzleBG-lighter);
       text-align: center;
       flex-basis: calc(100vw - 4rem);
-      height: calc(100vw - 4rem);
-      width: calc(100vw - 4rem);
-      margin: 2rem; 
-      padding: 1rem .5rem 1.5rem;
-      border-radius: 2rem;
+      flex-basis: 300px;
+      height: 300px;
+      padding: 40px 30px;
+      margin: 40px;
+      border-radius: 20px;
+      box-shadow: rgba(0,0,0,.2) 0px 10px 20px 0px;
 
       @media screen and (min-width: $medium) {
-        flex-basis: 300px;
-        height: 300px;
-        padding: 40px 30px;
-        margin: 40px;
-        border-radius: 20px;
+        justify-content: space-around;
+        transition: all 1s ease-in-out;
+        position: relative;
+      }
+
+      &.visible {
+          left: 0 !important;
+          right: 0 !important;
       }
 
       h1, img, p {
         flex: 0;
       }
 
+      h1, p {
+        color: var(--aubergine);
+      }
+
       h1 {
         font-size: 1.5rem;
-        line-height: 1em;
+        line-height: 1.2em;
         margin: 0;
         width: 100%;
+        // color: var(--rizzleBG);
       }
 
       img {
-        width: 64px;
-        height: 64px;
+        width: 32px;
+        height: 32px;
         margin: 0px auto;
       }
 
       p {
-        line-height: 1.2em; 
+        line-height: 1.3em;
+        // color: var(--rizzleBG);
       }
     }
+  }
+}
+
+section.video {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--brown);
+  padding-bottom: 5rem;
+
+  @media screen and (min-width: $medium) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+  }
+
+  video {
+    position: relative;
+    top: -50px;
+    border: 15px solid #333;
+    border-radius: 30px;
+    box-shadow: rgba(0,0,0,.2) 0px 10px 20px 0px;
+    opacity: 0;
+    transform: translateX(-20%); /* Start position off-screen to the left */
+    animation: slideInLeft 1s cubic-bezier(0.33, 1, 0.68, 1) 2.55s forwards;
+  }
+
+  div {
+    width: 300px;
+    color: white;
+    opacity: 0;
+    animation: fadeIn 1s ease-in 2s forwards;
+    h1 {
+      color: var(--rizzleBG);
+    }
+    p {
+      font-size: 1.2rem;
+    }
+
   }
 }
 
@@ -277,18 +378,6 @@ section.open {
     @media screen and (min-width: $medium) {
       text-align: center;
       max-width: 600px;
-    }
-  }
-
-  @media screen and (min-width: $medium) {
-    p:first-of-type {
-      text-align: left;
-      align-self: flex-start;
-    }
-
-    p:last-of-type {
-      text-align: right;
-      align-self: flex-end;
     }
   }
 }
@@ -340,7 +429,7 @@ section.open {
     margin-bottom: 0;
   }
 
-  p { 
+  p {
     margin-top: 0;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -362,7 +451,7 @@ section.open {
       line-height: 1.5rem;
     }
     h1 {
-      font-family: 'IBM Plex Sans', sans-serif;        
+      font-family: 'IBM Plex Sans', sans-serif;
       margin-bottom: .5rem;
     }
     p {
@@ -398,5 +487,57 @@ section.open {
     background-color: var(--aubergine);
     color: white;
     padding: .5em 2em;
+  }
+}
+
+/* Animations */
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
