@@ -89,7 +89,7 @@ body {
   }
 }
 
-.app-link-box {
+.app-link-box, .github-link-box {
   display: none;
 
   @media screen and (min-width: $medium) {
@@ -101,10 +101,17 @@ body {
     background-position: 15px;
     color: white !important;
     text-decoration: none;
-    padding: 10px 15px 5px 50px;
+    padding: 12px 15px 5px 50px;
     border-radius: 5px;
     border: 1px solid #333;
     margin-left: 3rem;
+  }
+}
+
+.github-link-box {
+  @media screen and (min-width: $medium) {
+    background-image: url('/img/github-mark.svg');
+    padding-left: 60px;
   }
 }
 
