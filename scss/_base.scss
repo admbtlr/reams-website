@@ -27,7 +27,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: 'IBM Plex San', sans-serif;
   font-size: 100%;
   font-weight: 300;
   color: var(--darkgray);
@@ -38,11 +38,11 @@ body {
   flex-direction: column;
 }
 h1, h2, h3, h4 {
-  font-family: 'Instrument Serif', serif;
+  font-family: 'IBM Plex Serif', serif;
   line-height: 1em;
   margin-bottom: 1rem;
   color: var(--aubergine);
-  font-weight: 200;
+  font-weight: 300;
   /* letter-spacing: -0.05em; */
 }
 h1 {
@@ -66,8 +66,8 @@ p:last-child {
 p,
 .tmpl-post li,
 img {
-  font-family: 'Instrument Sans', sans-serif;
-  font-weight: 400;
+  /* font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400; */
   max-width: 50rem;
 }
 p,
